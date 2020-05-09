@@ -1,0 +1,148 @@
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@300;800&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.profile-container {
+  height: 100%;
+  width:100%;
+  overflow: hidden;
+}
+.profile-container .left {
+  height: 100%;
+  width: 40%;
+  float: left;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background-image: url(../resources/images/dummy_images/bg.jpg);
+  background-size: cover;
+}
+.profile-container .left .image {
+  position: relative;
+  height: 55%;
+  top: 6%;
+  right:1%;
+  width: 66%;
+  background-color: rgb(41, 35, 35);
+  overflow:hidden;
+  border-radius:15px;
+  transition: transform 0.8s ease;
+}
+.profile-container .left .image:hover{
+    transform: scale(1.1);
+}
+#change-profile{
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    position: relative;
+    right:15px;
+}
+#edit-profile{
+  position:relative;
+  left:40%;
+  text-align: center;
+}
+#save-profile{
+  position:relative;
+  left:40%;
+  display:none;
+}
+.profile-container .left .image:hover #change-profile{
+    opacity: 1;
+}
+.profile-container .left .image .overlay-profile {
+  position: absolute;
+  top: 46%;
+  left: 25.5%;
+  opacity: 0;
+}
+.profile-container .left .image img {
+  display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transition: 0.5s ease;
+}
+.profile-container .left .image:hover img {
+  opacity: 0.7;
+}
+.profile-container .left .image:hover .overlay-profile {
+  opacity: 1;
+}
+.profile-container .right {
+  width: 60%;
+  float: right;
+  height: 100%;
+  background-color: rgb(62, 62, 65);
+  padding: 19px;
+  color: rgb(248, 241, 241);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.profile-container .right h2{
+    text-align: center;
+}
+.profile-container .right div {
+  width: 100%;
+  position: relative;
+  line-height: 1.5;
+  margin-top:-20px;
+  padding: 8px;
+  font-family: "Dosis", sans-serif;
+}
+.profile-container.right .info div .heading {
+  float: left;
+  width: 50%;
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  justify-content: flex-start;
+}
+.profile-container .right h1 {
+  text-align: center;
+  font-weight: bolder;
+  margin-top: 7px;
+  font-family: "Dosis", sans-serif;
+}
+.profile-container .right .info form input {
+  padding: 10px;
+  float: right;
+  position: absolute;
+  top: 19px;
+  width: 48%;
+  right: 0;
+  background-color: rgb(99, 99, 100);
+  border: none;
+  font-size:18px;
+  color: white;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.profile-btn {
+  align-self: center;
+  padding: 9px 30px;
+  font-size: 18px;
+  border: none;
+  color: #111;
+  background-color:#fff
+}
+.profile-btn:active {
+  transform: scale(0.95);
+}
+#choose-profile{
+  position: absolute;
+  top:70%;
+  left:6.5%;
+  width:85%;
+  display:none;
+ }

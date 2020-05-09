@@ -1,0 +1,175 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.wrapper-file-explorer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  border-top: rgb(221, 213, 213) solid 1px;
+  border-left: rgb(221, 213, 213) solid 1px;
+  border-right: rgb(221, 213, 213) solid 1px;
+}
+.wrapper-file-explorer .header-file-explorer {
+  height: 18%;
+  background-color: rgb(233, 229, 230);
+}
+.header-file-explorer .options {
+  margin-top: 6px;
+}
+.header-file-explorer .options ul {
+  display: flex;
+  margin: 0;
+  flex-shrink: 1;
+  float: left;
+  width: 70%;
+}
+.header-file-explorer .options ul li {
+  display: block;
+  list-style-type: none;
+  height: 100%;
+  width: 65px;
+  margin: 0px 5px;
+  margin-top: -7px;
+  padding: 10px 15px 10px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.header-file-explorer .options ul li p {
+  margin-top: 4px;
+  font-size: 12px;
+}
+.header-file-explorer .options ul li img {
+  height: 25px;
+  width: 25px;
+}
+.header-file-explorer .options ul li:hover {
+  background-color: rgb(194, 213, 248);
+}
+.header-file-explorer .options ul li:active {
+  transform: scale(0.95);
+}
+
+.body-file {
+  width: 100%;
+  height: 82%;
+  border-top: rgb(221, 213, 213) solid 1px;
+  border-bottom: rgb(221, 213, 213) solid 1px;
+}
+.body-file .tree-view {
+  float: left;
+  width: 20%;
+  height: 100%;
+  overflow-y: hidden;
+  overflow-x: auto;
+  border-right: rgb(221, 213, 213) solid 1px;
+  background-color: rgb(231, 227, 228);
+}
+.body-file .tree-view li {
+  font-size: 11px;
+}
+.body-file .folder-view {
+  float: right;
+  width: 80%;
+  height: 100%;
+  background-color: rgb(240, 236, 237);
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+#search-bar {
+  float: right;
+  width: 22%;
+  margin-right: 10px;
+  position: relative;
+  top: 5px;
+  border-radius: 4px;
+  border: rgb(226, 226, 231) solid 2px;
+  transition: border 1.2s ease;
+}
+#search-bar:focus {
+  border: solid rgb(124, 155, 223) 1px;
+}
+#file-path {
+  background-color: rgb(240, 236, 237);
+}
+.caption {
+  display: block;
+}
+.caption:hover {
+  background-color: rgb(194, 213, 248);
+}
+.body-file .folder-view {
+  float: right;
+  width: 80%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(240, 236, 237);
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.folder-view .folders {
+  margin-left: 0px;
+  height: 100%;
+}
+.folder-view .folders .folder,.folder-view .folders .file {
+  float: left;
+  display: block;
+  height: 75px;
+  width: 75px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+  overflow:hidden;
+  margin:0 0 0 10px;
+}
+.folder-view .folders .folder p,.folder-view .folders .file p  {
+  font-size: 11.5px;
+  margin-top: 2px;
+}
+.folder-view .folders .folder:hover,.folder-view .folders .file:hover {
+  background-color: rgb(194, 213, 248);
+  cursor: pointer;
+}
+.folder-view .folders .folder:active,.folder-view .folders .file:active  {
+  transform: scale(0.95);
+}
+.folder-view .folders .folder img ,.folder-view .folders .file img{
+  object-fit: contain;
+  width: 50px;
+  height: 50px;
+}
+.folder-view .folders .file p{
+  font-size: 10px;
+  line-height:0.9;
+  margin-top: 0px;
+  text-align: center;
+}
+#spotlight .header{
+  margin:0;
+}
+#spotlight{
+  height: calc(100% - 60px);
+  z-index:100;
+}
+#spotlight .arrow, #spotlight .footer{
+  background: none;
+}
+.folder-view .folders .video p{
+  font-size: 10px;
+  line-height:0.9;
+  margin-top: 2px;
+  text-align: center;
+}
