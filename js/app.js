@@ -18,7 +18,7 @@ setInterval(() => {
 let panelcount = 0;
 
 //this array is used to store alla the panels in it it will be easy for us to trigger each panel in this way
-let panelArray = [];
+const panelArray = [];
 
 //this array below stores all the clicked icons just to keep check on them that always one panel get opened when ever the user click on these icons
 let iconArray = [];
@@ -264,7 +264,8 @@ function removeIconFromTaskBar(icon, src) {
   panelcount--;
   for (let i = 0; i < panelArray.length; i++) {
     if (panelArray[i].id == icon) {
-      panelArray[i] = 0;
+      panelArray.splice(panelArray.indexOf(panelArray[i]),1);
+      console.log(panelArray)
     }
   }
 if(src){
