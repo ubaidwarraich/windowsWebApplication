@@ -241,22 +241,7 @@ function CreateModal(icon, src) {
 
 //take the argument panel and add it to the panelArray
 function addPanelToPanelArray(panelObj) {
-  let check = 0;
-    /*this if is used if the array has some panel but the panel was closed by the client so logically there is no need of that panel so below
-   logic just place the next panel opened on the index where it is a panel placed already*/
-  if (panelArray.length > 0) {
-    for (let i = 0; i < panelArray.length; i++) {
-      if (panelArray[i] == 0) {
-        panelArray[i] = panelObj;
-        check = 1;
-        break;
-      }
-    }
-  }
-  //this if runs if their is already an panel made and it is present in the array then the next panel will be simply added to the next index in a stack manner
-  if (check == 0) {
     panelArray[panelArray.length] = panelObj;
-  }
 }
 
 //it basically remove the icon from the taskbar paenl when the window is closed
@@ -265,7 +250,6 @@ function removeIconFromTaskBar(icon, src) {
   for (let i = 0; i < panelArray.length; i++) {
     if (panelArray[i].id == icon) {
       panelArray.splice(panelArray.indexOf(panelArray[i]),1);
-      console.log(panelArray)
     }
   }
 if(src){

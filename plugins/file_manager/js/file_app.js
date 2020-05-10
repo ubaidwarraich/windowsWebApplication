@@ -179,7 +179,7 @@ function add_click_event_to_video_files(panel_id, panels) {
     video.addEventListener("dblclick", () => {
       let src_video = video.getAttribute("data-source");
 
-      let _content = `<video data-role="video" data-autoplay="true" data-controls-hide="0" data-src="${src_video}"></video>`;
+      let _content = `<video data-role="video" data-autoplay="true" data-controls-hide="10" data-src="${src_video}"></video>`;
       create_video_window(_content);
     });
   });
@@ -315,10 +315,14 @@ function create_file_manager(icon) {
                     <img src='plugins/file_manager/icons/folder-open.png'>
                     <p>Documents</p>
                 </div>
-                  <div class="file photo" data-source="resources/images/dummy_images/wallpaper1.jpg">
-           <img src="resources/images/dummy_images/wallpaper.jpg">
-           <p></p>
-        </div>
+                <div class="file photo" data-source="resources/images/dummy_images/wallpaper1.jpg">
+                   <img src="resources/images/dummy_images/wallpaper.jpg">
+                  <p></p>
+                 </div>
+                  <div class="file video" data-source="resources/videos_files/vid1.mp4">
+                  <img src="plugins/file_manager/icons/file-video.png">
+                    <p></p>
+                </div> 
             </div>
         </div>
     </div>
