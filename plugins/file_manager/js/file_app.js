@@ -60,6 +60,7 @@ function add_click_event_to_all_photos(panel_id, panels) {
   const all_photos = document.querySelectorAll(`#${panel_id} .photo`);
   all_photos.forEach((photo) => {
     photo.addEventListener("dblclick", () => {
+      
       //change css of icon in taskba
       let src_photo = photo.getAttribute("data-source");
       //fecthing gallery
