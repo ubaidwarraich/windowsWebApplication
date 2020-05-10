@@ -113,12 +113,9 @@ function movePanelsBack(panels)
   for(let i=0; i<panels.length; i++)
   {
     if(panels[i]=="")
-    return;
-  }
-  //if there is panel in array then this logic will
-  for(let i=0; i<panels.length; i++)
-  {
-      panels[i].window.minimize();
+    break;
+    else
+    panels[i].window.minimize();
   }
 }
 //return the  todays date

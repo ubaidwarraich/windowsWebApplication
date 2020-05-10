@@ -1,12 +1,12 @@
 //count the number of image viewersopen to control the the no of icons appear in taskbar
 let img_viewer = 1;
-let video_viewer=1;
+let video_viewer = 1;
 //enables the functionality of file-manager
 function enable_file_manager(panel_id, panels) {
   enable_context_menu();
   manage_all_photos(panel_id, panels);
   enable_header_btnOptions();
-  enable_video_player(panel_id,panels);
+  enable_video_player(panel_id, panels);
 }
 //enable the header nbuttons functionality
 function enable_header_btnOptions() {
@@ -60,48 +60,54 @@ function add_click_event_to_all_photos(panel_id, panels) {
   const all_photos = document.querySelectorAll(`#${panel_id} .photo`);
   all_photos.forEach((photo) => {
     photo.addEventListener("dblclick", () => {
-      //change css of icon in taskbar
-      maximize_icon("photo-viewer");
+      //change css of icon in taskba
       let src_photo = photo.getAttribute("data-source");
       //fecthing gallery
       let gallery = fetchgallery(all_photos);
       //index is meant to display that picture onnly in the photo viewer whic was clicked index is taken and serached in tejh gallery todisplay the particular phooto
       let index_photo = fetchIndex(src_photo, all_photos);
-      //all done now index and gallery is provided to the plugin and it displays the image
-      showImage(++index_photo, gallery);
       //minimize all the windows open except image viewer
       movePanelsBack(panels);
+      //all done now index and gallery is provided to the plugin and it displays the image
+      showImage(++index_photo, gallery);
+      maximize_icon("photo-viewer");
       //just to make sure only one image viewer icon is presetn in the taskbar at one time
       if (img_viewer == 1) {
         img_viewer--;
-        console.log(img_viewer);
-        addIconToTaskbar(
-          "photo-viewer",
-          '<i class="far fa-image media" id="image-viewer" style="padding: 7px 13px 8px 11.7px;"></i>',
-          "i"
-        );
+        const iconName="photo-viewer";
+        const iconSource= '<i class="far fa-image media" id="image-viewer" style="padding: 7px 13px 8px 11.7px;"></i>';
+        const iconType = "i";
+        addIconToTaskbar(iconName,iconSource,iconType);
       }
-      let close_btn = document.getElementById("close-image-viewer");
       //add minimze functionality to image opener
-      let minmize_btn = document.getElementById(`minimize-img-btn`);
-      minmize_btn.addEventListener("click", () => {
-        $(`#spotlight`).hide();
-        minimize_icon("photo-viewer");
-      });
+      minimize_image();
       //show the img viewer back if it was minimized
-      let show_img_opener = document.querySelector(".footer .photo-viewer");
-      show_img_opener.addEventListener("click", () => {
-        $(`#spotlight`).show();
-        maximize_icon("photo-viewer");
-        movePanelsBack(panels);
-      });
-      //remove icon of image-viewer from taskbar when it is closed
-      close_btn.addEventListener("click", () => {
-        $("li.photo-viewer").remove();
-        img_viewer=1;
-        console.log(img_viewer);
-      });
+      show_minimized_image(panels);
     });
+  });
+  close_image();
+}
+function show_minimized_image(panels) {
+  let show_img_opener = document.querySelector(".footer .photo-viewer");
+  show_img_opener.addEventListener("click", () => {
+    $(`#spotlight`).show();
+    maximize_icon("photo-viewer");
+    movePanelsBack(panels);
+  });
+}
+function minimize_image() {
+  let minmize_btn = document.getElementById(`minimize-img-btn`);
+  minmize_btn.addEventListener("click", () => {
+    $(`#spotlight`).hide();
+    minimize_icon("photo-viewer");
+  });
+}
+function close_image() {
+  let close_btn = document.getElementById("close-image-viewer");
+  //remove icon of image-viewer from taskbar when it is closed
+  close_btn.addEventListener("click", () => {
+    $("li.photo-viewer").remove();
+    img_viewer = 1;
   });
 }
 //show the clicked image with the help of plugin
@@ -152,12 +158,11 @@ function setPhotosTitle(panel_id) {
   }
 }
 //code for music player in file-manager
-function enable_video_player(panel_id,panels){
+function enable_video_player(panel_id, panels) {
   setVideosTitle(panel_id);
- add_click_event_to_video_files(panel_id,panels); 
+  add_click_event_to_video_files(panel_id, panels);
 }
-function setVideosTitle(panel_id)
-{
+function setVideosTitle(panel_id) {
   const video_names = document.querySelectorAll(`#${panel_id} .video`);
   const video_titles = document.querySelectorAll(
     `#${panel_id} .folder-view .folders .video p`
@@ -167,62 +172,58 @@ function setVideosTitle(panel_id)
     video_titles[i].innerHTML = video_src.pop();
   }
 }
-function add_click_event_to_video_files(panel_id,panels){
+function add_click_event_to_video_files(panel_id, panels) {
   const all_videos = document.querySelectorAll(`#${panel_id} .video`);
-  all_videos.forEach(video=>{
-    video.addEventListener("dblclick",()=>{
-      let src_video=video.getAttribute("data-source");
-     
-      let _content=`<video data-role="video" data-autoplay="true" data-controls-hide="0" data-src="${src_video}"></video>`;
+  all_videos.forEach((video) => {
+    video.addEventListener("dblclick", () => {
+      let src_video = video.getAttribute("data-source");
+
+      let _content = `<video data-role="video" data-autoplay="true" data-controls-hide="0" data-src="${src_video}"></video>`;
       create_video_window(_content);
-    })
-  })
+    });
+  });
 }
-function create_video_window(content){
-  if(video_viewer==1){
-    let iconName="video-viewer";
-  let icon= '<img src="plugins/file_manager/icons/file-video.png" height="37.1" width="47">';
-  addIconToTaskbar(
-    iconName,
-   icon,
-    "i"
-  );
- 
-  video_viewer--;
-  let panel = jsPanel
-  .create({
-    headerTitle: iconName,
-    closeOnEscape: true,
-    panelSize: "950 568",
-    headerControls: {
-      maximize: "remove",
-    },
-    id: iconName,
-    theme: "dark",
-    resizeit: false,
-    boxShadow: 5,
-    content:content,
-    callback: function () {
-      this.content.style.padding = "0px";
-    },
-    onclosed: function(){
-      video_viewer++;
-      removeIconFromTaskBar(iconName,"")
-    },
-    onminimized: function(){
-      minimize_icon(iconName);
-    },
-  })
-  .setHeaderLogo(
-    '<img src="plugins/file_manager/icons/file-video.png" height="50" width="30" style="margin:5px;">'
-  );
-  let panelObj = {
-    id: panel.id,
-    window: panel,
-  };
-  addPanelToPanelArray(panelObj);
-  console.log(panelArray);
-  hideWidget();
+function create_video_window(content) {
+  if (video_viewer == 1) {
+    let iconName = "video-viewer";
+    let icon =
+      '<img src="plugins/file_manager/icons/file-video.png" height="37.1" width="47">';
+    addIconToTaskbar(iconName, icon, "i");
+
+    video_viewer--;
+    let panel = jsPanel
+      .create({
+        headerTitle: iconName,
+        closeOnEscape: true,
+        panelSize: "950 568",
+        headerControls: {
+          maximize: "remove",
+        },
+        id: iconName,
+        theme: "dark",
+        resizeit: false,
+        boxShadow: 5,
+        content: content,
+        callback: function () {
+          this.content.style.padding = "0px";
+        },
+        onclosed: function () {
+          video_viewer++;
+          removeIconFromTaskBar(iconName, "");
+        },
+        onminimized: function () {
+          minimize_icon(iconName);
+        },
+      })
+      .setHeaderLogo(
+        '<img src="plugins/file_manager/icons/file-video.png" height="50" width="30" style="margin:5px;">'
+      );
+    let panelObj = {
+      id: panel.id,
+      window: panel,
+    };
+    addPanelToPanelArray(panelObj);
+    hideWidget();
   }
   return;
 }
@@ -313,6 +314,10 @@ function create_file_manager(icon) {
                     <img src='plugins/file_manager/icons/folder-open.png'>
                     <p>Documents</p>
                 </div>
+                  <div class="file photo" data-source="resources/images/dummy_images/wallpaper1.jpg">
+           <img src="resources/images/dummy_images/wallpaper.jpg">
+           <p></p>
+        </div>
             </div>
         </div>
     </div>
