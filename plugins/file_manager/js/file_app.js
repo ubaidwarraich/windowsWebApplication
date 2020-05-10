@@ -74,6 +74,7 @@ function add_click_event_to_all_photos(panel_id, panels) {
       //just to make sure only one image viewer icon is presetn in the taskbar at one time
       if (img_viewer == 1) {
         img_viewer--;
+        console.log(img_viewer);
         addIconToTaskbar(
           "photo-viewer",
           '<i class="far fa-image media" id="image-viewer" style="padding: 7px 13px 8px 11.7px;"></i>',
@@ -97,7 +98,8 @@ function add_click_event_to_all_photos(panel_id, panels) {
       //remove icon of image-viewer from taskbar when it is closed
       close_btn.addEventListener("click", () => {
         $("li.photo-viewer").remove();
-        img_viewer++;
+        img_viewer=1;
+        console.log(img_viewer);
       });
     });
   });
